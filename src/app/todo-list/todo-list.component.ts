@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
 import { IAppState } from '../store';
-import { REMOVE_TODO, TOGGLE_TODO } from '../actions';
 import { ITodo } from '../todo';
+import { REMOVE_TODO, TOGGLE_TODO } from '../actions';
+
 
 @Component({
   selector: 'app-todo-list',
@@ -25,6 +26,11 @@ export class TodoListComponent implements OnInit {
 
   removeTodo(todo){
     this.ngRedux.dispatch({type: REMOVE_TODO, id: todo.id});
+  }
+
+  editTodo(){
+    //store.dispatch(show(['/path'], { query: 'string' }));
+    //routerLink="['/edit', t.id, 'id']"
   }
 
 }

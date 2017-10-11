@@ -7,6 +7,7 @@
                 <th>Responsible</th>
                 <th>Priority</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -15,6 +16,7 @@
                 <td><span>{{t.description}}</span></td>
                 <td><span>{{t.responsible}}</span></td>
                 <td><span>{{t.priority}}</span></td>
+                <td><button class="btn btn-primary" [routerLink]="['/edit', t.id]">EDIT</button></td>
                 <td><button class="btn btn-primary" (click)="removeTodo(t)">Delete</button></td>
             </tr>
         </tbody>

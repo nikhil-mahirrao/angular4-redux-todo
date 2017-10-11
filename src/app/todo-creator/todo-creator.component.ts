@@ -28,5 +28,13 @@ export class TodoCreatorComponent implements OnInit {
 
   onSubmit() {
     this.ngRedux.dispatch({type:ADD_TODO, todo : this.model});
+
+    this.model = {
+      id: 0,
+      description: "",
+      responsible: "",
+      priority: "low",
+      isCompleted: false
+    }
   }
 }

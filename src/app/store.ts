@@ -1,5 +1,5 @@
 import { ITodo } from './todo'
-import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO, REMOVE_ALL_TODOS } from './actions';
+import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO, REMOVE_ALL_TODOS, SAVE_TODO } from './actions';
 
 export interface IAppState {
     todos: ITodo[];
@@ -43,6 +43,13 @@ export function rootReducer(state, action) {
                 todos: [],
                 lastUpdate: new Date()
             })
+        
+        case SAVE_TODO:
+            action.todo.id =state.todos.length + 1;
+            return Object.assign({}, state, {
+                todos: state.todos.concat(Object.assign({},action.todo)),
+                lastUpdate: new Date()
+            })    
 
     }
     return state;
