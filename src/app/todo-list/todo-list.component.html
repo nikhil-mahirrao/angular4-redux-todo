@@ -11,12 +11,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let t of todos | async">
+            <tr *ngFor="let t of todos | async; let i = index;">
                 <td><span>{{t.id}}</span></td>
                 <td><span>{{t.description}}</span></td>
                 <td><span>{{t.responsible}}</span></td>
                 <td><span>{{t.priority}}</span></td>
-                <td><button class="btn btn-primary" [routerLink]="['/edit', t.id]">EDIT</button></td>
+                <td><button class="btn btn-primary" [routerLink]="['/edit', i]">EDIT</button></td>
                 <td><button class="btn btn-primary" (click)="removeTodo(t)">Delete</button></td>
             </tr>
         </tbody>

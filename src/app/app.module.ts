@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { NgRedux, NgReduxModule } from '@angular-redux/store';
+import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
 import { IAppState, rootReducer, INITIAL_STATE } from './store';
 import { NgReduxRouterModule } from '@angular-redux/router';
 
@@ -37,7 +37,18 @@ import { todoRoutes } from './todo-routes';
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  constructor(ngRedux:NgRedux<IAppState>){
-    ngRedux.configureStore(rootReducer, INITIAL_STATE);
+  constructor(ngRedux:NgRedux<IAppState>, devTools: DevToolsExtension){
+    
+    const storeEnhancers = devTools.isEnabled() ? // <- New
+    [ devTools.enhancer() ] : // <- New
+    []; // <- New
+
+    ngRedux.configureStore(
+      rootReducer, 
+      INITIAL_STATE,
+      [], // <- New
+      storeEnhancers
+    );
+  
   }
 }

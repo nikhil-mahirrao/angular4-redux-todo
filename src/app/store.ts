@@ -45,11 +45,10 @@ export function rootReducer(state, action) {
             })
         
         case SAVE_TODO:
-            action.todo.id =state.todos.length + 1;
             return Object.assign({}, state, {
-                todos: state.todos.concat(Object.assign({},action.todo)),
+                todos: action.todos,
                 lastUpdate: new Date()
-            })    
+            })   
 
     }
     return state;

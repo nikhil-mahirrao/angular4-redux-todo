@@ -11,7 +11,7 @@ import { ITodo } from '../todo';
 })
 export class TodoCreatorComponent implements OnInit {
 
-  @select() todos;
+  //@select() todos;
 
   model: ITodo = {
     id: 0,
@@ -24,6 +24,7 @@ export class TodoCreatorComponent implements OnInit {
   constructor(private ngRedux:NgRedux<IAppState>) { }
 
   ngOnInit() {
+  
   }
 
   onSubmit() {
@@ -36,5 +37,7 @@ export class TodoCreatorComponent implements OnInit {
       priority: "low",
       isCompleted: false
     }
+
+    
   }
 }

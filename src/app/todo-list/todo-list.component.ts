@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,EventEmitter } from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
 import { IAppState } from '../store';
 import { ITodo } from '../todo';
@@ -13,11 +13,10 @@ import { REMOVE_TODO, TOGGLE_TODO } from '../actions';
 export class TodoListComponent implements OnInit {
 
   @select() todos;
-
   constructor(private ngRedux:NgRedux<IAppState>) { }
 
   ngOnInit() {
-    //console.log(this.todos)
+    //console.log(this.todos);
   }
 
   toggleTodo(todo) {

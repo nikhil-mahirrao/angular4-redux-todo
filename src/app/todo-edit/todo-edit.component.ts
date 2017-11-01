@@ -14,30 +14,38 @@ import { SAVE_TODO } from '../actions';
 })
 export class TodoEditComponent implements OnInit {
 
-  @select() todos;
+  //@select() todos;
+
+  todoIndex = this.route.params["_value"].id;
+  todos;
+  subscription;
+  model;
   
-  id = this.route.params;
-
-  model: ITodo = {
-    id: 0,
-    description: "",
-    responsible: "",
-    priority: "low",
-    isCompleted: false
-  }  
-
+  
+  
+  
   constructor(
     private ngRedux:NgRedux<IAppState>, 
     private router: Router, 
     private route: ActivatedRoute
-  ) { }
+  ) { 
+
+    this.subscription = ngRedux.select('todos')
+    .subscribe(newCount => {
+      this.todos = newCount
+      this.model = newCount[this.todoIndex];
+    });
+
+  }
 
   ngOnInit() {
   }
 
   onSave() {
-    console.log(this.todos);
-    this.ngRedux.dispatch({type:SAVE_TODO, todo : this.model, id:this.id});
+    this.todos[this.todoIndex] = this.model;
+    this.ngRedux.dispatch({type:SAVE_TODO, todos : this.todos});
+
+    this.router.navigateByUrl('/overview');
   }
 
 }
